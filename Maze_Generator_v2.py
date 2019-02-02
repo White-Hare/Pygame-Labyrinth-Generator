@@ -74,7 +74,7 @@ used=[]
 a=0
 furthest=a
 
-for i in range(size*2):
+for i in range(int(size*1.2)):#birthday paradox
     
     b=random.randint(0,3)
 
@@ -82,43 +82,28 @@ for i in range(size*2):
     used.append(a)
 
     while  loop:
-        switchs=[0,0,0,0]
-
-        for u in used:
-            if u==a+px or a>size-px-1:switchs[0]=1
-            if u==a-px or a-px<0:switchs[1]=1
-            if u==a+1 or a%px+1>px-1:switchs[2]=1
-            if u==a-1 or a%px-1<0:switchs[3]=1
-
-
-        if switchs==[1,1,1,1]:
+        if  (a+px in used or a>size-px-1) and (a-px in used or a-px<0) and (a+1 in used or a%px+1>px-1) and (a-1 in used or a%px-1<0):
                 a=used[random.randint(0,len(used)-1)]
                 loop=True
                 
 
-
-        for u in used:
-            if b==0 and a+px==u:
+        if b==0 and a+px in used:
                 b=random.randint(1,3)
                 loop=True
-                break
-            elif b==1 and a-px==u:
+        elif b==1 and a-px in used:
                 while b==1:
                     b=random.randint(0,3)
                 loop=True
-                break
-            elif b==2 and a+1==u:
+        elif b==2 and a+1 in used:
                 while b==2:
                     b=random.randint(0,3)
                 loop=True
-                break
-            elif b==3 and a-1==u:
+        elif b==3 and a-1 in used:
                 b=random.randint(0,2)
                 loop=True
-                break
 
         else:
-            loop=False
+             loop=False
 
 
     if a<size-px and b==0:#down
