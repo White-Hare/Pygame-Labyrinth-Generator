@@ -25,11 +25,12 @@ def controlls():
 
 arr=[]
 
-x,y=30,20
+x,y=50,50
+xoffset,yoffset=WIDTH/200,HEIGHT/200#increase ofset for smooth edges
 
 for i in range(y):
     for i2 in range(x):
-        arr.append((random.randint(i2*WIDTH/x+x/2,(i2+1)*WIDTH/x-x/2),random.randint(i*HEIGHT/y+y/2,(i+1)*HEIGHT/y-y/2)))
+        arr.append((random.randint(WIDTH/x*(i2)+xoffset,WIDTH/x*(i2+1)-xoffset),random.randint(HEIGHT/y*(i)+yoffset,HEIGHT/y*(i+1)-yoffset)))
 
 
 grid=pg.Surface((WIDTH,HEIGHT))
@@ -74,7 +75,7 @@ used=[]
 a=0
 furthest=a
 
-for i in range(int(size*1.2)):#birthday paradox
+for i in range(int(size*1.2)):
     
     b=random.randint(0,3)
 
@@ -137,6 +138,7 @@ pg.draw.circle(grid,(200,0,0),(int((furthest%px+1)*WIDTH/x),int((furthest//px+1)
 
 grid.convert()
 path.convert()
+
 
 while running:
     running=controlls()
